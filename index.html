@@ -1,1 +1,15 @@
-"Hello World" 
+```
+#! /usr/bin/env python3
+import cgitb
+cgitb.enable()
+
+print("Content-Type: text/html")
+print()
+
+print("<TITLE>CGI script output</TITLE>")
+print("<H1>This is my first CGI script</H1>")
+print("Hello, world!<br />")
+
+import time
+print("Time: %s" % time.time())
+```
