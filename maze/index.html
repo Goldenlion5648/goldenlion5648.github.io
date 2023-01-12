@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+        <title> Celsius To Fahrenheit </title>
+    
+    <!-- Pyscript -->
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <!--<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />-->
+    
+    <!-- bootstrap for styling , Pyscript can also be used for styling instead of bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <style>
+    
+    body {
+        background-color: #fcfcfc;
+        padding-top: 55px;
+        min-height: 100vh;
+        margin:0;
+        display:flex;
+        flex-direction:column;
+      }
+    </style>  
+    
+</head>
+<body>
+
+<!-- write your Python code in py-script tag -->
+<py-script>
+    from PIL import Image
+    im = PIL.Image.new(mode="RGB", size=(200, 200))
+    im.show()
+    import random
+    import itertools as it
+    from collections import defaultdict as dd, deque, OrderedDict
+    import sys
+    import os
+    import time
+    # print(sys.version)
+    # random.seed(5648)
+    sys.setrecursionlimit(5000)
+    random.seed(5)
+    dim = 31
+    dim = int(
+        sys.argv[-1]) if len(sys.argv) > 1 and sys.argv[-1].isnumeric() else dim
+    OPEN = "O"
+    WALL = "#"
+    # start_x = dim // 2 + 1
+    # start_y = dim // 2
+    start_y = 0
+    start_x = 1
+    show = len(sys.argv) > 1 and "show" in sys.argv[1]
+    # print(show)
+
+
+    board = [list(OPEN*dim) for _ in range(dim)]
+    for y in range(dim):
+        for x in range(dim):
+            if x % 2== 0 and y % 2 == 0:
+                board[y][x] = '#'
+    def show_board(board, fix=False):
+        ret = []
+        for line in board:
+            ret.append(("".join(line).replace("@" if fix else "((((", OPEN)))
+        pyscript.write("Fahrenheit", "\n".join(ret))
+
+    def clean_board(board):
+        for y in range(dim):
+            board[y] = [WALL if x == WALL else OPEN for x in board[y]]
+        
+        print("cleaned")
+        # show_board(board)
+
+
+    # show_board(board)
+    # adj = list(it.pairwise([1, 0, -1, 0, 1]))
+    adj = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    seen = set()
+    def dfs(y, x):
+        if board[y][x] != OPEN or (y, x) in seen:
+            return
+        seen.add((y, x))
+        # print(y, x)
+        new_adj = adj.copy()
+        # random.shuffle(new_adj)
+        for i in range(x % 4 + random.randint(0,3)):
+            new_adj.insert(0, new_adj.pop())
+        board[y][x] = "@"
+        # wall_mode = False
+        total_placed = 0
+        
+        reviewed = set()
+        for dy, dx in new_adj:
+            # print(dy, dx)
+            new_y = dy + y
+            new_x = dx + x
+            reviewed.add((new_y,new_x))
+            if new_y in range(dim) and new_x in range(dim) and board[new_y][new_x] == OPEN:
+                temp = board[new_y][new_x]
+                board[new_y][new_x] = "?"
+                if show:
+                    os.system("cls")
+                    show_board(board)
+                board[new_y][new_x] = temp
+                # input("waiting")
+                # time.sleep(.01)
+                total_placed += 1
+
+                board[y][x] = "@"
+                dfs(new_y, new_x)
+                
+        assert len(reviewed) == 4
+        if total_placed == 0 and (x % 2 == 1 or y % 2 == 1):
+            board[y][x] = WALL
+
+    def place_walls(board):
+        board[0] = list(WALL * dim)
+        board[-1] = list(WALL * dim)
+        for y in range(dim):
+            board[y][0] = WALL
+            board[y][-1] = WALL
+        board[start_y][start_x] = OPEN
+
+    def bfs():
+        fringe = deque([((start_y, start_x), 0)])
+        seen = OrderedDict()
+        turn = 0
+        while fringe:
+            cur, steps = fringe.popleft()
+            turn += 1
+            if cur in seen:
+                continue
+            seen[cur] = turn
+            y, x = cur
+            # last = cur
+            for dy, dx in adj:
+                new_y = dy + y
+                new_x = dx + x
+                if new_y in range(dim) and new_x in range(dim) and board[new_y][new_x] == OPEN:
+                    fringe.append(((new_y, new_x), steps + 1))
+            # print(fringe)
+        ret, _ = seen.popitem(True)
+        # print(seen)
+        # print(ret)
+        return ret
+
+
+    # adj8 = [(y, x) for y in range(-1, 2) for x in range(-1, 2) if not (x == 0 and y == 0)]
+    def count_branches():
+        return sum(board[y][x] == OPEN and sum(board[y + dy][x + dx] == OPEN for dy, dx in adj) >= 3 for y, x in it.product(range(1, dim - 1), range(1, dim - 1)))
+
+    dfs(start_y,start_x)
+    clean_board(board)
+    board[start_y][start_x] = "P"
+    # show_board(board, False)
+    # show_board(board, True)
+    print("branches", count_branches())
+    # print(board)
+    last_y, last_x = bfs()
+    board[last_y][last_x] = "G"
+    show_board(board, True)   
+</py-script>    
+
+    <div class="container">
+        
+        <h1 class="text-center">
+            Celsius to Fahrenheit Converter
+        </h1>
+        <br />
+        <p><h3>Enter Temp in Calsius number:</h3>
+        <input id="celsius" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Enter Temp in Celsius" /></p>
+        <center>
+            <button id="convert" type="submit"  class="btn btn-info" pys-onClick="convert">Convert</button>
+
+        </center>
+        
+        <p>
+        <h4>Result:</h4>
+        <textarea id="Fahrenheit" class="form-control" rows="2" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Result"></textarea></p>
+    
+        
+    </div>    
+    
+    </body>
+    </html>    
