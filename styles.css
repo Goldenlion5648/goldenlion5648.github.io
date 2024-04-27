@@ -53,6 +53,24 @@ h3.section_head {
         1px 1px 0 #000; */
 }
 
+.subhead2 {
+    color: lawngreen;
+    font-size: 28px;
+    /* width: 50%; */
+    align-content: center;
+    text-align: center;
+    padding-top: 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    /* text-shadow:
+        -1px -1px 0 rgb(249, 12, 12),
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000; */
+}
+
 .header_with_sub {
     text-align: center;
     /* min-width: 20%; */
