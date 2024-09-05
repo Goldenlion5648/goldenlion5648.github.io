@@ -11,26 +11,14 @@
 
     </link>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-  <![endif]-->
 </head>
 
 <body>
-    <!-- <nav class="navbar">
-        <ul>
-            <li class="navlink">
-                <a target="_blank" href="#">About Me</a>
-                <a target="_blank" href="#">Projects</a>
-            </li>
-        </ul>
-    </nav> -->
-    <!-- <h2>Welcome to my website</h2> -->
     <ul class="nav">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a target="_blank" href="https://github.com/goldenlion5648">Github</a></li>
-        <li><a target="_blank" href="https://goldenlion5648.itch.io/">Play My Games</a></li>
+        <li><a target="_blank" href="https://thinkwithgames.itch.io/">Play My Games</a></li>
         <li><a href="#stats">Stats</a></li>
     </ul>
     <br>
@@ -43,25 +31,72 @@
             About
         </h1>
         <p class="subhead">
-            I enjoy creating games and programming puzzles. Automating tasks is also a ton of fun, especially when its
-            done with python. Always eager to learn new programming languages!
-            <a class="subhead" target="_blank" href="https://github.com/goldenlion5648">Check My Github</a>
+            I enjoy creating games and programming puzzles. Automating tasks is also a ton of fun, especially when its done with python.
         </p>
 
     </section>
     <div id="projects"></div>
     <section class="main_content">
+            <!-- command to make gifs:
+    ffmpeg -ss 39 -t 5 -i "2024-09-05_10-41-20.mp4" -vf "fps=10,scale=640:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 you_are_the_code.gif -->
         <h1 class="section_head">
-            Projects
+            --Purchasable Projects--
         </h1>
-        <h2 class="subhead2">
-            Project previews below!
-            <br>
-            <a class="subhead2" target="_blank" href="https://goldenlion5648.itch.io/">Check out more of my games here</a>
-        </h2>
+        <h3 class="section_head">
+            Hover or click gifs for more info!
+        </h3>
         <div class="grid_holder">
             <div class="video_box">
-                <a target="_blank" href="https://goldenlion5648.itch.io/bitpath">
+                <a target="_blank" href="https://store.steampowered.com/app/3078190/Decipher_The_Deck/">
+                    <img src="images/card_bomb.gif" class="image">
+                    <div class="middle">
+                        <div class="hover_text">Puzzle game where you must discover the rules! Satisfy all of the pink cards!</div>
+                    </div>
+                </a>
+            </div>
+            <div class="project_title">
+                Decipher The Deck<br>(on Steam)
+            </div>
+            <div class="project_title">
+                Regex Adventure
+            </div>
+            <div class="video_box">
+                <a target="_blank" href="https://thinkwithgames.itch.io/regex-adventure">
+                    <img src="images/regex_adventure2.gif" class="image">
+                    <div class="middle">
+                        <div class="hover_text">Use pattern matching to fight goblins!<br> Teaches regex!</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <h1 class="section_head">
+            --Other Projects--
+        </h1>
+        <div class="grid_holder">
+            <div class="video_box">
+                <a target="_blank" href="https://thinkwithgames.itch.io/youarethecode">
+                    <img src="images/you_are_the_code.gif" class="image">
+                    <div class="middle">
+                        <div class="hover_text">Run your code before the user deletes it!</div>
+                    </div>
+                </a>
+            </div>
+            <div class="project_title">
+                You Are The Code
+            </div>
+            <div class="project_title">
+                Perfect Maze Generator
+            </div>
+            <div class="video_box">
+                <a target="_blank" href="https://github.com/Goldenlion5648/perfect_maze">
+                    <img src="images/perfect_maze.gif" class="image">
+                    <div class="middle">
+                        <div class="hover_text">Generates a maze with exactly one path to each spot (and a gif to go with it!) </div>
+                    </div>
+                </a>
+            </div>
+            <div class="video_box">
+                <a target="_blank" href="https://thinkwithgames.itch.io/bitpath">
                     <img src="images/bit_path.gif" class="image">
                     <div class="middle">
                         <div class="hover_text">Use bit manipulation to make the blue and purple rows match!</div>
@@ -72,35 +107,13 @@
                 Binary Bit Path
             </div>
             <div class="project_title">
-                Regex Adventure
-            </div>
-            <div class="video_box">
-                <a target="_blank" href="https://goldenlion5648.itch.io/regex-adventure">
-                    <img src="images/regex_adventure2.gif" class="image">
-                    <div class="middle">
-                        <div class="hover_text">Use pattern matching to fight goblins!<br> Teaches regex!</div>
-                    </div>
-                </a>
+                Hide Messages in Jumble
             </div>
             <div class="video_box">
                 <a target="_blank" href="https://github.com/Goldenlion5648/hide-message-in-jumble">
                     <img src="images/jumble_message2.gif" class="image">
                     <div class="middle">
                         <div class="hover_text">A program that hides overlapping messages in plain sight</div>
-                    </div>
-                </a>
-            </div>
-            <div class="project_title">
-                Hide Messages in Jumble
-            </div>
-            <div class="project_title">
-                CLAX Game
-            </div>
-            <div class="video_box">
-                <a target="_blank" href="https://github.com/SCCapstone/CLAX-Game/releases">
-                    <img src="images/clax.gif" class="image">
-                    <div class="middle">
-                        <div class="hover_text">A boss-fighting game made with 3 other programmers </div>
                     </div>
                 </a>
             </div>
@@ -116,13 +129,13 @@
                 Picture Tiles<br>("15 Puzzle")
             </div>
             <div class="project_title">
-                Perfect Maze Generator
+                CLAX Game
             </div>
             <div class="video_box">
-                <a target="_blank" href="https://github.com/Goldenlion5648/perfect_maze">
-                    <img src="images/perfect_maze.gif" class="image">
+                <a target="_blank" href="https://github.com/SCCapstone/CLAX-Game/releases">
+                    <img src="images/clax.gif" class="image">
                     <div class="middle">
-                        <div class="hover_text">Generates a maze with exactly one path to each spot (and a gif to go with it!) </div>
+                        <div class="hover_text">A boss-fighting game made with 3 other programmers </div>
                     </div>
                 </a>
             </div>
@@ -149,16 +162,5 @@
             src="https://leetcard.jacoblin.cool/Goldenlion5648"
             width="600" />
         </div >
-        <!-- <div class="stats_grid_one_col">
-            <iframe src="documents/ColterBoudinotResumeFromGithub.pdf" width="1000px" height="1000px" ></iframe>
-        </div > -->
     </section>
-    <!-- <section id="projects">
-        <h1 class="section_head">
-            Work Experience
-        </h1>
-    </section>
-    <h2 class="subhead">
-        Hover over a project to see its description.
-    </h2> -->
 </body>
