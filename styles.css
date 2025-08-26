@@ -5,6 +5,11 @@ body {
     text-align: center;
 }
 
+a {
+  text-decoration: underline;
+  text-decoration-color: white; /* pick your color */
+}
+
 
 .top {
     /* text-transform: uppercase !important; */
@@ -116,6 +121,7 @@ h3.section_head {
     /* float: right; */
     box-sizing: border-box;
 }
+
 
 .project_title {
     align-content: center;
