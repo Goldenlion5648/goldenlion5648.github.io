@@ -217,12 +217,11 @@ ul.nav {
     margin: 0%;
     padding-top: 0px;
     /* padding-bottom: 5px; */
-    position: sticky;
+    position: fixed;
     top: 0%;
     align-content: center;
     width: 100%;
     z-index: 5;
-    height: 60px;
     /* left: 50%; */
 }
 
